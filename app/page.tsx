@@ -5,7 +5,6 @@ import ChallengeHeader from '@/components/challenge-shell/ChallengeHeader'
 import BugTracker from '@/components/challenge-shell/BugTracker'
 import SubmissionDrawer from '@/components/challenge-shell/SubmissionDrawer'
 import BrokenApp from '@/components/broken-app/BrokenApp'
-import { BugDefinition } from '@/lib/bugs'
 import { TOTAL_POINTS } from '@/lib/bugs'
 
 interface Candidate {
@@ -31,9 +30,7 @@ export default function Home() {
   const [regEmail, setRegEmail] = useState('')
   const [regLoading, setRegLoading] = useState(false)
   const [regError, setRegError] = useState<string | null>(null)
-
-  const [selectedBug, setSelectedBug] = useState<BugDefinition | null>(null)
-  const [activeTab, setActiveTab] = useState<'app' | 'submit'>('app')
+  const [activeTab, setActiveTab] = useState<'app' | 'report'>('app')
 
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault()
@@ -77,16 +74,10 @@ export default function Home() {
     }
   }, [candidate])
 
-  const handleSelectBug = useCallback((bug: BugDefinition) => {
-    setSelectedBug(bug)
-    setActiveTab('submit')
-  }, [])
-
   // Landing page
   if (stage === 'landing') {
     return (
       <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #092B48 0%, #0d3a60 50%, #092B48 100%)' }}>
-        {/* Nav */}
         <nav className="px-8 py-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-cd-purple flex items-center justify-center text-white font-bold text-sm">CD</div>
@@ -99,7 +90,6 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* Hero */}
         <div className="flex-1 flex flex-col items-center justify-center px-4 text-center pb-20">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-cd-purple/20 border border-cd-purple/30">
             <div className="w-1.5 h-1.5 rounded-full bg-cd-purple-light animate-pulse" />
@@ -130,7 +120,6 @@ export default function Home() {
           <p className="text-white/30 text-xs mt-5">15 bugs · {TOTAL_POINTS} points · AI-scored</p>
         </div>
 
-        {/* Bottom features */}
         <div className="px-8 pb-10 grid grid-cols-3 gap-4 max-w-3xl mx-auto w-full">
           {[
             { title: 'Pre-vetted talent', desc: 'Every candidate is skills-tested before placement' },
@@ -220,10 +209,6 @@ export default function Home() {
   }
 
   // Challenge UI
-  const existingSubmission = selectedBug
-    ? candidate!.submissions.find((s) => s.bugId === selectedBug.id) || null
-    : null
-
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <ChallengeHeader
@@ -234,11 +219,7 @@ export default function Home() {
       />
 
       <div className="flex flex-1 overflow-hidden">
-        <BugTracker
-          submissions={candidate!.submissions}
-          onSelectBug={handleSelectBug}
-          selectedBugId={selectedBug?.id || null}
-        />
+        <BugTracker submissions={candidate!.submissions} />
 
         <main className="flex-1 overflow-hidden flex flex-col">
           <div className="border-b border-challenge-border flex shrink-0">
@@ -250,17 +231,17 @@ export default function Home() {
                   : 'border-transparent text-gray-500 hover:text-gray-300'
               }`}
             >
-              Broken App
+              The App
             </button>
             <button
-              onClick={() => setActiveTab('submit')}
+              onClick={() => setActiveTab('report')}
               className={`px-6 py-3 font-mono text-xs uppercase tracking-widest border-b-2 transition-colors ${
-                activeTab === 'submit'
+                activeTab === 'report'
                   ? 'border-cd-purple text-cd-purple-light'
                   : 'border-transparent text-gray-500 hover:text-gray-300'
               }`}
             >
-              {selectedBug ? `Submit: ${selectedBug.id}` : 'Submit Fix'}
+              Report a Bug
             </button>
           </div>
 
@@ -269,10 +250,7 @@ export default function Home() {
               <BrokenApp />
             ) : (
               <SubmissionDrawer
-                key={selectedBug?.id ?? 'none'}
-                bug={selectedBug}
                 candidateId={candidate!.id}
-                existingSubmission={existingSubmission}
                 onSubmitSuccess={refreshCandidate}
               />
             )}

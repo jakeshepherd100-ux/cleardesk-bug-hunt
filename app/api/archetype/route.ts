@@ -45,7 +45,7 @@ Builder: ${scores.Builder || 0}
 Please classify the dominant management archetype.`
 
     const message = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 512,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
@@ -56,7 +56,8 @@ Please classify the dominant management archetype.`
       throw new Error('No text in response')
     }
 
-    const parsed = JSON.parse(textBlock.text)
+    const raw = textBlock.text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '').trim()
+    const parsed = JSON.parse(raw)
     return NextResponse.json(parsed)
   } catch (error) {
     console.error('Archetype API error:', error)

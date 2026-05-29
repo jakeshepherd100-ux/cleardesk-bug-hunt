@@ -62,7 +62,8 @@ Please evaluate this submission.`
       throw new Error('No text in response')
     }
 
-    const parsed = JSON.parse(textBlock.text)
+    const raw = textBlock.text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '').trim()
+    const parsed = JSON.parse(raw)
     return NextResponse.json(parsed)
   } catch (error) {
     console.error('Score API error:', error)
