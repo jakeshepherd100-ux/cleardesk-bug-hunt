@@ -269,6 +269,7 @@ export default function Home() {
               <BrokenApp />
             ) : (
               <SubmissionDrawer
+                key={selectedBug?.id ?? 'none'}
                 bug={selectedBug}
                 candidateId={candidate!.id}
                 existingSubmission={existingSubmission}
