@@ -14,8 +14,13 @@ module.exports = {
         'challenge-red': '#EF4444',
         'challenge-surface': '#111111',
         'challenge-border': '#222222',
+        'cd-navy': '#092B48',
+        'cd-purple': '#835AFF',
+        'cd-purple-light': '#BCA6FF',
+        'cd-blue': '#73C4FF',
       },
       fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
     },

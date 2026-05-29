@@ -149,20 +149,30 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             Hours Per Week Needed <span className="text-challenge-red">*</span>
           </label>
-          <div className="flex items-center gap-4">
-            <input
-              type="range"
-              min={10}
-              max={40}
-              step={5}
-              value={form.hoursNeeded}
-              onChange={(e) => setForm({ ...form, hoursNeeded: parseInt(e.target.value) })}
-              className="flex-1 accent-challenge-accent"
-            />
-            <span className="text-white font-mono w-16 text-right">{form.hoursNeeded} hrs</span>
+          <div className="grid grid-cols-4 gap-2">
+            {[
+              { label: 'Part-Time', sub: '10–15 hrs', value: 12 },
+              { label: 'Half-Time', sub: '20 hrs', value: 20 },
+              { label: 'Full-Time', sub: '40 hrs', value: 40 },
+              { label: 'Flex', sub: 'Varies', value: 0 },
+            ].map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => setForm({ ...form, hoursNeeded: opt.value })}
+                className={`py-2.5 px-2 rounded-lg border text-center transition-colors ${
+                  form.hoursNeeded === opt.value
+                    ? 'border-challenge-accent bg-challenge-accent/10 text-challenge-accent'
+                    : 'border-challenge-border text-gray-400 hover:border-gray-600'
+                }`}
+              >
+                <div className="text-sm font-semibold">{opt.label}</div>
+                <div className="text-xs opacity-60">{opt.sub}</div>
+              </button>
+            ))}
           </div>
         </div>
 
