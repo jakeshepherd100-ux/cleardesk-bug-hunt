@@ -51,9 +51,8 @@ ${prompt}
 Please evaluate this submission.`
 
     const message = await anthropic.messages.create({
-      model: 'claude-opus-4-7',
+      model: 'claude-sonnet-4-20250514',
       max_tokens: 512,
-      thinking: { type: 'adaptive' },
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
     })
