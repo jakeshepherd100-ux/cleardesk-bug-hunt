@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // BUG-08: This page has zero authentication — it's completely public.
 // Anyone can view candidate match data without logging in.
 // Fix: Check for a valid session/token and redirect unauthenticated users.
