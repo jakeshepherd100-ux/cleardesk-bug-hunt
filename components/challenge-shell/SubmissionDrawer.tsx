@@ -100,12 +100,12 @@ export default function SubmissionDrawer({ candidateId, onSubmitSuccess }: Submi
             ? SCORE_BG[result.label] || 'border-gray-700'
             : result.type === 'duplicate'
             ? 'border-amber-600 bg-amber-900/20'
-            : 'border-gray-600 bg-gray-900/40'
+            : 'border-white/20 bg-white/5'
         }`}>
           {result.type === 'scored' && (
             <>
               <div className="flex items-center justify-between mb-2">
-                <span className="font-mono text-xs text-gray-400">Matched → {result.bugId}</span>
+                <span className="font-mono text-xs text-white/50">Matched → {result.bugId}</span>
                 <span className={`font-mono text-sm font-bold ${SCORE_TEXT[result.label]}`}>
                   {result.label} · {result.score}/3
                 </span>
@@ -121,7 +121,7 @@ export default function SubmissionDrawer({ candidateId, onSubmitSuccess }: Submi
           )}
           {result.type === 'no_match' && (
             <>
-              <div className="font-mono text-xs text-gray-400 mb-1">No match found</div>
+              <div className="font-mono text-xs text-white/50 mb-1">No match found</div>
               <p className="text-sm text-gray-300">{result.feedback}</p>
             </>
           )}
@@ -130,7 +130,7 @@ export default function SubmissionDrawer({ candidateId, onSubmitSuccess }: Submi
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block font-mono text-xs uppercase tracking-widest text-gray-500 mb-2">
+          <label className="block font-mono text-xs uppercase tracking-widest text-white/40 mb-2">
             Area of the App
           </label>
           <div className="flex flex-wrap gap-2">
@@ -142,7 +142,7 @@ export default function SubmissionDrawer({ candidateId, onSubmitSuccess }: Submi
                 className={`px-3 py-1 rounded-full border text-xs transition-colors font-mono ${
                   area === a
                     ? 'border-cd-purple/60 bg-cd-purple/15 text-cd-purple-light'
-                    : 'border-challenge-border text-gray-500 hover:border-gray-600'
+                    : 'border-white/15 text-white/40 hover:border-white/30'
                 }`}
               >
                 {a}
@@ -152,7 +152,7 @@ export default function SubmissionDrawer({ candidateId, onSubmitSuccess }: Submi
         </div>
 
         <div>
-          <label className="block font-mono text-xs uppercase tracking-widest text-gray-500 mb-2">
+          <label className="block font-mono text-xs uppercase tracking-widest text-white/40 mb-2">
             What's the bug? *
           </label>
           <textarea
@@ -160,12 +160,12 @@ export default function SubmissionDrawer({ candidateId, onSubmitSuccess }: Submi
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Describe what you found — what happens, where, and why it's wrong..."
             rows={4}
-            className="w-full bg-challenge-surface border border-challenge-border rounded px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-gray-500 font-mono resize-none"
+            className="w-full bg-challenge-surface border border-challenge-border rounded px-3 py-2 text-sm text-gray-200 placeholder-white/25 focus:outline-none focus:border-white/30 font-mono resize-none"
           />
         </div>
 
         <div>
-          <label className="block font-mono text-xs uppercase tracking-widest text-gray-500 mb-2">
+          <label className="block font-mono text-xs uppercase tracking-widest text-white/40 mb-2">
             How would you fix it? *
           </label>
           <textarea
@@ -173,7 +173,7 @@ export default function SubmissionDrawer({ candidateId, onSubmitSuccess }: Submi
             onChange={(e) => setFix(e.target.value)}
             placeholder="Describe the fix — what change would you make and where..."
             rows={4}
-            className="w-full bg-challenge-surface border border-challenge-border rounded px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-gray-500 font-mono resize-none"
+            className="w-full bg-challenge-surface border border-challenge-border rounded px-3 py-2 text-sm text-gray-200 placeholder-white/25 focus:outline-none focus:border-white/30 font-mono resize-none"
           />
         </div>
 

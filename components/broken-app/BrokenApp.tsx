@@ -33,13 +33,13 @@ export default function BrokenApp() {
           <div className="flex items-center gap-2">
             {STEPS.map((s, idx) => (
               <div key={s.id} className="flex items-center gap-2">
-                <div className={`flex items-center gap-1.5 ${step === s.id ? 'text-white' : 'text-gray-600'}`}>
+                <div className={`flex items-center gap-1.5 ${step === s.id ? 'text-white' : 'text-white/40'}`}>
                   <div className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold border ${
                     step === s.id
-                      ? 'border-challenge-accent bg-challenge-accent text-black'
+                      ? 'border-cd-purple bg-cd-purple text-white'
                       : (STEPS.findIndex(x => x.id === step) > idx)
-                        ? 'border-gray-600 bg-gray-800 text-gray-300'
-                        : 'border-gray-700 text-gray-600'
+                        ? 'border-white/20 bg-white/10 text-white/60'
+                        : 'border-white/15 text-white/30'
                   }`}>
                     {s.num}
                   </div>

@@ -43,7 +43,7 @@ export default function BugTracker({ submissions }: BugTrackerProps) {
           <div className="w-5 h-5 rounded bg-cd-purple flex items-center justify-center text-white font-bold text-xs">CD</div>
           <span className="text-white font-semibold text-sm">Bugs Found</span>
         </div>
-        <p className="text-xs text-gray-500 font-mono">{totalSubmitted}/{totalBugs} reported</p>
+        <p className="text-xs text-white/40 font-mono">{totalSubmitted}/{totalBugs} reported</p>
       </div>
 
       <div className="p-3 flex-1">
@@ -66,7 +66,7 @@ export default function BugTracker({ submissions }: BugTrackerProps) {
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <span className={`shrink-0 font-bold ${sub ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <span className={`shrink-0 font-bold ${sub ? 'text-white/80' : 'text-white/30'}`}>
                           {sub ? bug.id : '???'}
                         </span>
                         {sub && (
@@ -76,7 +76,7 @@ export default function BugTracker({ submissions }: BugTrackerProps) {
                         )}
                       </div>
                       {sub && (
-                        <div className="mt-0.5 text-gray-500 truncate text-xs">{bug.title}</div>
+                        <div className="mt-0.5 text-white/40 truncate text-xs">{bug.title}</div>
                       )}
                     </div>
                   )

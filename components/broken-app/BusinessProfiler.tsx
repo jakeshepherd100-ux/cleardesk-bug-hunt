@@ -138,8 +138,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, roleType: role })}
                 className={`py-2 px-3 rounded-lg border text-sm font-medium transition-colors ${
                   form.roleType === role
-                    ? 'border-challenge-accent bg-challenge-accent/10 text-challenge-accent'
-                    : 'border-challenge-border text-gray-400 hover:border-gray-600'
+                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
+                    : 'border-white/15 text-white/50 hover:border-white/30'
                 }`}
               >
                 {role}
@@ -165,8 +165,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, hoursNeeded: opt.value })}
                 className={`py-2.5 px-2 rounded-lg border text-center transition-colors ${
                   form.hoursNeeded === opt.value
-                    ? 'border-challenge-accent bg-challenge-accent/10 text-challenge-accent'
-                    : 'border-challenge-border text-gray-400 hover:border-gray-600'
+                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
+                    : 'border-white/15 text-white/50 hover:border-white/30'
                 }`}
               >
                 <div className="text-sm font-semibold">{opt.label}</div>
@@ -188,8 +188,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, requiredApps: toggleArray(form.requiredApps, app) })}
                 className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${
                   form.requiredApps.includes(app)
-                    ? 'border-challenge-accent bg-challenge-accent/10 text-challenge-accent'
-                    : 'border-challenge-border text-gray-500 hover:border-gray-600'
+                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
+                    : 'border-white/15 text-white/40 hover:border-white/30'
                 }`}
               >
                 {app}
@@ -210,8 +210,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, requiredSkills: toggleArray(form.requiredSkills, skill) })}
                 className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${
                   form.requiredSkills.includes(skill)
-                    ? 'border-challenge-accent bg-challenge-accent/10 text-challenge-accent'
-                    : 'border-challenge-border text-gray-500 hover:border-gray-600'
+                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
+                    : 'border-white/15 text-white/40 hover:border-white/30'
                 }`}
               >
                 {skill}
@@ -255,7 +255,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
 
         <button
           type="submit"
-          className="w-full bg-challenge-accent text-black font-bold py-3 rounded-lg hover:bg-challenge-accent/90 transition-colors"
+          className="w-full font-bold py-3 rounded-lg transition-colors text-white"
+          style={{ background: 'linear-gradient(135deg, #835AFF, #6040dd)' }}
         >
           Find My Match →
         </button>
@@ -279,7 +280,7 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 {/* BUG-03: onClick is undefined */}
                 <button
                   onClick={undefined as unknown as React.MouseEventHandler}
-                  className="text-xs text-challenge-accent hover:underline"
+                  className="text-xs text-cd-purple-light hover:underline"
                 >
                   Learn More
                 </button>

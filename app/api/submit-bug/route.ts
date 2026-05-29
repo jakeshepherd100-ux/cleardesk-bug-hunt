@@ -56,7 +56,7 @@ ${fix}`
 
     const message = await anthropic.messages.create({
       model: 'claude-haiku-4-5-20251001',
-      max_tokens: 256,
+      max_tokens: 512,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
     })
@@ -66,7 +66,9 @@ ${fix}`
       throw new Error('No text in response')
     }
 
-    const parsed = JSON.parse(textBlock.text) as {
+    const raw = textBlock.text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '').trim()
+    console.log('Haiku raw response:', raw)
+    const parsed = JSON.parse(raw) as {
       bugId: string
       score: number
       label: string
@@ -127,7 +129,7 @@ ${fix}`
       submission,
     })
   } catch (error) {
-    console.error('Submit bug error:', error)
+    console.error('Submit bug error:', error instanceof Error ? error.message : error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
