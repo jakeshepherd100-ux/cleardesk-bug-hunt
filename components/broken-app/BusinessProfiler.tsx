@@ -90,34 +90,34 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-white mb-2">Tell us about your business</h2>
-        <p className="text-gray-400">
+        <h2 className="text-2xl font-bold text-cd-navy mb-2">Tell us about your business</h2>
+        <p className="text-gray-500">
           We'll use this to match you with the right remote talent.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Business Name <span className="text-challenge-red">*</span>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Business Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             value={form.businessName}
             onChange={(e) => setForm({ ...form, businessName: e.target.value })}
             placeholder="Acme Home Care"
-            className="w-full bg-challenge-surface border border-challenge-border rounded-lg px-4 py-2.5 text-white placeholder-gray-600 focus:outline-none focus:border-gray-500"
+            className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 placeholder-gray-300 focus:outline-none focus:border-cd-purple/50 focus:ring-1 focus:ring-cd-purple/20"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Industry <span className="text-challenge-red">*</span>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Industry <span className="text-red-500">*</span>
           </label>
           <select
             value={form.industry}
             onChange={(e) => setForm({ ...form, industry: e.target.value })}
-            className="w-full bg-challenge-surface border border-challenge-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-gray-500"
+            className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-cd-purple/50"
           >
             <option value="">Select industry</option>
             {INDUSTRIES.map((i) => (
@@ -127,8 +127,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Role Type Needed <span className="text-challenge-red">*</span>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Role Type Needed <span className="text-red-500">*</span>
           </label>
           <div className="grid grid-cols-3 gap-2">
             {ROLE_TYPES.map((role) => (
@@ -138,8 +138,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, roleType: role })}
                 className={`py-2 px-3 rounded-lg border text-sm font-medium transition-colors ${
                   form.roleType === role
-                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
-                    : 'border-white/15 text-white/50 hover:border-white/30'
+                    ? 'border-cd-purple bg-cd-purple/10 text-cd-purple'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
               >
                 {role}
@@ -165,8 +165,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, hoursNeeded: opt.value })}
                 className={`py-2.5 px-2 rounded-lg border text-center transition-colors ${
                   form.hoursNeeded === opt.value
-                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
-                    : 'border-white/15 text-white/50 hover:border-white/30'
+                    ? 'border-cd-purple bg-cd-purple/10 text-cd-purple'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
               >
                 <div className="text-sm font-semibold">{opt.label}</div>
@@ -177,7 +177,7 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             Required Apps
           </label>
           <div className="flex flex-wrap gap-2">
@@ -188,8 +188,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, requiredApps: toggleArray(form.requiredApps, app) })}
                 className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${
                   form.requiredApps.includes(app)
-                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
-                    : 'border-white/15 text-white/40 hover:border-white/30'
+                    ? 'border-cd-purple bg-cd-purple/10 text-cd-purple'
+                    : 'border-gray-200 text-gray-500 hover:border-gray-300'
                 }`}
               >
                 {app}
@@ -199,7 +199,7 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             Key Skills Required
           </label>
           <div className="flex flex-wrap gap-2">
@@ -210,8 +210,8 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
                 onClick={() => setForm({ ...form, requiredSkills: toggleArray(form.requiredSkills, skill) })}
                 className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${
                   form.requiredSkills.includes(skill)
-                    ? 'border-cd-purple bg-cd-purple/20 text-cd-purple-light'
-                    : 'border-white/15 text-white/40 hover:border-white/30'
+                    ? 'border-cd-purple bg-cd-purple/10 text-cd-purple'
+                    : 'border-gray-200 text-gray-500 hover:border-gray-300'
                 }`}
               >
                 {skill}
@@ -222,7 +222,7 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Min. Years Experience
             </label>
             <input
@@ -231,18 +231,18 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
               max={20}
               value={form.yearsExpNeeded}
               onChange={(e) => setForm({ ...form, yearsExpNeeded: parseInt(e.target.value) || 0 })}
-              className="w-full bg-challenge-surface border border-challenge-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-gray-500"
+              className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-cd-purple/50"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Your Timezone
             </label>
             <select
               value={form.timezone}
               onChange={(e) => setForm({ ...form, timezone: e.target.value })}
-              className="w-full bg-challenge-surface border border-challenge-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-gray-500"
+              className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-cd-purple/50"
             >
               <option value="">Select timezone</option>
               <option value="EST">Eastern (EST)</option>
@@ -263,24 +263,24 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
       </form>
 
       {/* Testimonials — BUG-03: undefined onClick handlers */}
-      <div className="mt-12 border-t border-challenge-border pt-8">
-        <h3 className="text-lg font-bold text-white mb-4">What our clients say</h3>
+      <div className="mt-12 border-t border-gray-100 pt-8">
+        <h3 className="text-lg font-bold text-cd-navy mb-4">What our clients say</h3>
         <div className="space-y-4">
           {[
             { name: 'Sarah M.', role: 'Home Care Agency Owner', quote: 'My scheduler handles everything now. Game changer.' },
             { name: 'Tom R.', role: 'Staffing Firm Partner', quote: 'Our recruiter sources better candidates than we did in-house.' },
           ].map((t) => (
-            <div key={t.name} className="bg-challenge-surface border border-challenge-border rounded-lg p-4">
-              <p className="text-gray-300 text-sm mb-3">"{t.quote}"</p>
+            <div key={t.name} className="bg-gray-50 border border-gray-100 rounded-lg p-4">
+              <p className="text-gray-600 text-sm mb-3">"{t.quote}"</p>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-white">{t.name}</p>
-                  <p className="text-xs text-gray-500">{t.role}</p>
+                  <p className="text-sm font-medium text-cd-navy">{t.name}</p>
+                  <p className="text-xs text-gray-400">{t.role}</p>
                 </div>
                 {/* BUG-03: onClick is undefined */}
                 <button
                   onClick={undefined as unknown as React.MouseEventHandler}
-                  className="text-xs text-cd-purple-light hover:underline"
+                  className="text-xs text-cd-purple hover:underline"
                 >
                   Learn More
                 </button>
@@ -291,9 +291,9 @@ export default function BusinessProfiler({ onComplete }: BusinessProfilerProps) 
       </div>
 
       {/* Footer — BUG-05: Admin link has no label */}
-      <footer className="mt-8 pt-4 border-t border-challenge-border flex justify-between text-xs text-gray-600">
+      <footer className="mt-8 pt-4 border-t border-gray-100 flex justify-between text-xs text-gray-400">
         <span>© 2024 ClearDesk</span>
-        <a href="/admin" className="hover:text-gray-400 transition-colors">
+        <a href="/admin" className="hover:text-gray-600 transition-colors">
           {/* BUG-05: No label text here — should say "Admin Dashboard" */}
           admin
         </a>

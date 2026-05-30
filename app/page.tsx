@@ -77,8 +77,22 @@ export default function Home() {
   // Registration
   if (stage === 'register') {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4" style={{ background: 'linear-gradient(135deg, #092B48 0%, #0d3a60 50%, #092B48 100%)' }}>
-        <div className="w-full max-w-md">
+      <div className="min-h-screen flex items-center justify-center px-4 py-12" style={{ background: 'linear-gradient(135deg, #092B48 0%, #0d3a60 50%, #092B48 100%)' }}>
+        <div className="w-full max-w-lg">
+
+          {/* Persona briefing */}
+          <div className="mb-5 bg-cd-blue/10 border border-cd-blue/25 rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-cd-blue text-xs font-bold uppercase tracking-widest">📋 Your Scenario</span>
+            </div>
+            <p className="text-white/80 text-sm leading-relaxed">
+              <strong className="text-white">You are a potential ClearDesk client.</strong> You came across ClearDesk on LinkedIn and clicked through to their talent-matching tool. You're excited — your business is growing and you need remote support. You've arrived at the tool ready to find your first hire.
+            </p>
+            <p className="text-cd-blue/70 text-xs mt-2 leading-relaxed">
+              🐛 <em>Note: This is a hiring challenge. Use the app as if you're a real client — and report any bugs you find along the way.</em>
+            </p>
+          </div>
+
           <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
