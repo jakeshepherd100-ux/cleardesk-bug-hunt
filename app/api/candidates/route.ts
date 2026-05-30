@@ -10,13 +10,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Name and email required' }, { status: 400 })
     }
 
-    const existing = await prisma.candidate.findUnique({ where: { email } })
-    if (existing) {
-      return NextResponse.json(existing)
-    }
-
-    const candidate = await prisma.candidate.create({
-      data: { name, email },
+    const candidate = await prisma.candidate.upsert({
+      where: { email },
+      update: { name },
+      create: { name, email },
+      include: { submissions: true },
     })
 
     return NextResponse.json(candidate, { status: 201 })
