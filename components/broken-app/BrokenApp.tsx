@@ -46,22 +46,30 @@ export default function BrokenApp() {
 
             {/* Welcome heading */}
             <div className="text-center mb-10">
-              <p className="text-cd-purple font-semibold text-sm uppercase tracking-widest mb-2">Welcome to ClearDesk!</p>
+              <p className="text-cd-purple font-semibold text-sm uppercase tracking-widest mb-3">Welcome to ClearDesk!</p>
               <h1 className="text-5xl font-black text-cd-navy mb-4 leading-tight">
-                Find Your Perfect<br />
-                <span className="text-cd-purple">Remote Talent</span>
+                Build the team you need<br />
+                <span className="text-cd-purple">anywhere in the world</span>
               </h1>
-              <p className="text-gray-500 text-base leading-relaxed max-w-lg mx-auto">
-                Our talent matching algorithm connects US businesses with the right pre-vetted, Philippines-based remote professionals — built around your specific needs, industry, and management style.
+              <p className="text-gray-500 text-base leading-relaxed max-w-lg mx-auto mb-8">
+                ClearDesk helps you scale smarter with the right virtual assistants matched to your business needs — skilled professionals who function as true remote team members.
               </p>
+              <button
+                onClick={() => setStep('profiler')}
+                className="px-10 py-4 rounded-2xl text-white font-bold text-base shadow-lg transition-all hover:scale-105 active:scale-95"
+                style={{ background: 'linear-gradient(135deg, #835AFF, #6040dd)' }}
+              >
+                Find My Match →
+              </button>
+              <p className="text-xs text-gray-300 mt-3">Takes about 3 minutes · No commitment required</p>
             </div>
 
-            {/* Stats row */}
+            {/* Real stats from cleardesk.com */}
             <div className="grid grid-cols-3 gap-4 mb-10">
               {[
-                { value: '500+', label: 'Businesses matched' },
-                { value: '48 hrs', label: 'Avg. time to first match' },
-                { value: '94%', label: 'Client satisfaction rate' },
+                { value: '4.9/5.0', label: 'Avg. client satisfaction' },
+                { value: '2,000+', label: 'Business owners served' },
+                { value: '70%', label: 'Cost savings vs. US hiring' },
               ].map((s) => (
                 <div key={s.label} className="text-center p-4 rounded-xl border border-gray-100 bg-gray-50">
                   <div className="text-2xl font-black text-cd-navy mb-0.5">{s.value}</div>
@@ -70,25 +78,13 @@ export default function BrokenApp() {
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="text-center mb-10">
-              <button
-                onClick={() => setStep('profiler')}
-                className="px-10 py-4 rounded-2xl text-white font-bold text-base shadow-lg transition-all hover:scale-105 active:scale-95"
-                style={{ background: 'linear-gradient(135deg, #835AFF, #6040dd)' }}
-              >
-                Find Your Talent →
-              </button>
-              <p className="text-xs text-gray-300 mt-3">3 quick steps · AI-matched results · No commitment</p>
-            </div>
-
             {/* How it works */}
-            <div className="border-t border-gray-100 pt-8">
+            <div className="border-t border-gray-100 pt-8 mb-8">
               <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">How it works</p>
               <div className="grid grid-cols-3 gap-6">
                 {[
                   { step: '1', title: 'Tell us about your business', desc: 'Share your industry, role needs, and the tools your team uses.' },
-                  { step: '2', title: 'Take the management quiz', desc: 'We identify your management style to surface the best personality fit.' },
+                  { step: '2', title: 'Take the management quiz', desc: 'We identify your style to surface the best personality and skills fit.' },
                   { step: '3', title: 'Meet your matches', desc: 'Get ranked profiles of pre-vetted talent ready to start within days.' },
                 ].map((s) => (
                   <div key={s.step} className="text-center">
@@ -100,18 +96,20 @@ export default function BrokenApp() {
               </div>
             </div>
 
-            {/* Trusted by */}
-            <div className="border-t border-gray-100 mt-8 pt-6 text-center">
-              <p className="text-xs text-gray-300 mb-3 uppercase tracking-widest font-semibold">Trusted by teams at</p>
-              <div className="flex items-center justify-center gap-8 text-gray-300 font-semibold text-sm">
-                <span>Brightstar Home Care</span>
-                <span>·</span>
-                <span>Apex Staffing</span>
-                <span>·</span>
-                <span>Meridian Realty Group</span>
-                <span>·</span>
-                <span>BluePeak Financial</span>
+            {/* Industries */}
+            <div className="border-t border-gray-100 pt-6 mb-6">
+              <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-300 mb-4">Industries we serve</p>
+              <div className="flex items-center justify-center gap-3 flex-wrap">
+                {['Home Care', 'Real Estate', 'Staffing & Recruiting', 'Solar', 'Financial Services', 'E-Commerce'].map((ind) => (
+                  <span key={ind} className="text-xs px-3 py-1 rounded-full border border-gray-200 text-gray-500 bg-gray-50">{ind}</span>
+                ))}
               </div>
+            </div>
+
+            {/* Testimonial snippet */}
+            <div className="border-t border-gray-100 pt-6 text-center">
+              <p className="text-gray-500 text-sm italic mb-2">"My VA handles scheduling, emails, and follow-ups — she runs like a true team member. Game changer for our agency."</p>
+              <p className="text-xs text-gray-400 font-semibold">— Sarah M., Home Care Agency Owner</p>
             </div>
 
           </div>
