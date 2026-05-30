@@ -42,40 +42,78 @@ export default function BrokenApp() {
         </nav>
 
         <div className="flex-1 flex flex-col items-center justify-center px-6 py-16 text-center">
-          <div className="max-w-xl w-full">
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-cd-purple/10 border border-cd-purple/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-cd-purple animate-pulse" />
-              <span className="text-cd-purple text-xs font-semibold uppercase tracking-widest">Talent Matching</span>
+          <div className="max-w-2xl w-full">
+
+            {/* Welcome heading */}
+            <div className="text-center mb-10">
+              <p className="text-cd-purple font-semibold text-sm uppercase tracking-widest mb-2">Welcome to ClearDesk!</p>
+              <h1 className="text-5xl font-black text-cd-navy mb-4 leading-tight">
+                Find Your Perfect<br />
+                <span className="text-cd-purple">Remote Talent</span>
+              </h1>
+              <p className="text-gray-500 text-base leading-relaxed max-w-lg mx-auto">
+                Our talent matching algorithm connects US businesses with the right pre-vetted, Philippines-based remote professionals — built around your specific needs, industry, and management style.
+              </p>
             </div>
 
-            <h1 className="text-4xl font-black text-cd-navy mb-4 leading-tight">
-              Find Your Perfect<br />
-              <span className="text-cd-purple">Remote Talent</span>
-            </h1>
-
-            <p className="text-gray-600 text-base mb-3 leading-relaxed">
-              ClearDesk's talent matching algorithm connects US businesses with the right pre-vetted, Philippines-based remote professionals — built around your specific needs, industry, and management style.
-            </p>
-
-            <p className="text-gray-500 text-sm mb-10 leading-relaxed">
-              Answer a few quick questions and we'll surface your top matches — VAs, schedulers, bookkeepers, recruiters, and more — ranked by fit.
-            </p>
-
-            <button
-              onClick={() => setStep('profiler')}
-              className="px-10 py-4 rounded-2xl text-white font-bold text-base shadow-lg transition-all hover:scale-105 active:scale-95"
-              style={{ background: 'linear-gradient(135deg, #835AFF, #6040dd)' }}
-            >
-              Find Your Talent →
-            </button>
-
-            <div className="mt-8 flex items-center justify-center gap-6 text-xs text-gray-300">
-              <span>3 quick steps</span>
-              <span>·</span>
-              <span>AI-matched results</span>
-              <span>·</span>
-              <span>No commitment</span>
+            {/* Stats row */}
+            <div className="grid grid-cols-3 gap-4 mb-10">
+              {[
+                { value: '500+', label: 'Businesses matched' },
+                { value: '48 hrs', label: 'Avg. time to first match' },
+                { value: '94%', label: 'Client satisfaction rate' },
+              ].map((s) => (
+                <div key={s.label} className="text-center p-4 rounded-xl border border-gray-100 bg-gray-50">
+                  <div className="text-2xl font-black text-cd-navy mb-0.5">{s.value}</div>
+                  <div className="text-xs text-gray-400">{s.label}</div>
+                </div>
+              ))}
             </div>
+
+            {/* CTA */}
+            <div className="text-center mb-10">
+              <button
+                onClick={() => setStep('profiler')}
+                className="px-10 py-4 rounded-2xl text-white font-bold text-base shadow-lg transition-all hover:scale-105 active:scale-95"
+                style={{ background: 'linear-gradient(135deg, #835AFF, #6040dd)' }}
+              >
+                Find Your Talent →
+              </button>
+              <p className="text-xs text-gray-300 mt-3">3 quick steps · AI-matched results · No commitment</p>
+            </div>
+
+            {/* How it works */}
+            <div className="border-t border-gray-100 pt-8">
+              <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-300 mb-6">How it works</p>
+              <div className="grid grid-cols-3 gap-6">
+                {[
+                  { step: '1', title: 'Tell us about your business', desc: 'Share your industry, role needs, and the tools your team uses.' },
+                  { step: '2', title: 'Take the management quiz', desc: 'We identify your management style to surface the best personality fit.' },
+                  { step: '3', title: 'Meet your matches', desc: 'Get ranked profiles of pre-vetted talent ready to start within days.' },
+                ].map((s) => (
+                  <div key={s.step} className="text-center">
+                    <div className="w-8 h-8 rounded-full bg-cd-purple/10 border border-cd-purple/20 text-cd-purple font-black text-sm flex items-center justify-center mx-auto mb-3">{s.step}</div>
+                    <p className="font-semibold text-cd-navy text-sm mb-1">{s.title}</p>
+                    <p className="text-xs text-gray-400 leading-relaxed">{s.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Trusted by */}
+            <div className="border-t border-gray-100 mt-8 pt-6 text-center">
+              <p className="text-xs text-gray-300 mb-3 uppercase tracking-widest font-semibold">Trusted by teams at</p>
+              <div className="flex items-center justify-center gap-8 text-gray-300 font-semibold text-sm">
+                <span>Brightstar Home Care</span>
+                <span>·</span>
+                <span>Apex Staffing</span>
+                <span>·</span>
+                <span>Meridian Realty Group</span>
+                <span>·</span>
+                <span>BluePeak Financial</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
