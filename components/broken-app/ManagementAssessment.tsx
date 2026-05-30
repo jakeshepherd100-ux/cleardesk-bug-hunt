@@ -209,13 +209,19 @@ export default function ManagementAssessment({ onComplete, onBack }: ManagementA
         </div>
 
         {/* BUG-04: Back button does nothing — no handler */}
-        {/* BUG-15: No CTA or next steps after archetype reveal */}
         <div className="flex gap-3">
           <button
             onClick={undefined as unknown as React.MouseEventHandler}
-            className="flex-1 border border-gray-200 text-gray-400 py-3 rounded-lg hover:border-gray-300 transition-colors"
+            className="border border-gray-200 text-gray-400 py-3 px-5 rounded-lg hover:border-gray-300 transition-colors"
           >
             ← Back
+          </button>
+          <button
+            onClick={() => onComplete(result)}
+            className="flex-1 py-3 rounded-lg text-white font-bold transition-all hover:scale-[1.02]"
+            style={{ background: 'linear-gradient(135deg, #835AFF, #6040dd)' }}
+          >
+            See Your Matches →
           </button>
         </div>
       </div>
