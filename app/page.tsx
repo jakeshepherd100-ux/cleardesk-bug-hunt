@@ -21,10 +21,10 @@ interface Candidate {
   }>
 }
 
-type Stage = 'landing' | 'register' | 'challenge'
+type Stage = 'register' | 'challenge'
 
 export default function Home() {
-  const [stage, setStage] = useState<Stage>('landing')
+  const [stage, setStage] = useState<Stage>('register')
   const [candidate, setCandidate] = useState<Candidate | null>(null)
   const [regName, setRegName] = useState('')
   const [regEmail, setRegEmail] = useState('')
@@ -74,80 +74,11 @@ export default function Home() {
     }
   }, [candidate])
 
-  // Landing page
-  if (stage === 'landing') {
-    return (
-      <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #092B48 0%, #0d3a60 50%, #092B48 100%)' }}>
-        <nav className="px-8 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-cd-purple flex items-center justify-center text-white font-bold text-sm">CD</div>
-            <span className="text-white font-bold text-lg">ClearDesk</span>
-          </div>
-          <div className="flex items-center gap-6 text-sm text-white/60 font-medium">
-            <span>How It Works</span>
-            <span>Pricing</span>
-            <span>Case Studies</span>
-          </div>
-        </nav>
-
-        <div className="flex-1 flex flex-col items-center justify-center px-4 text-center pb-20">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-cd-purple/20 border border-cd-purple/30">
-            <div className="w-1.5 h-1.5 rounded-full bg-cd-purple-light animate-pulse" />
-            <span className="text-cd-purple-light text-xs font-semibold uppercase tracking-widest">Hiring Challenge · Live</span>
-          </div>
-
-          <h1 className="text-5xl sm:text-6xl font-black text-white mb-4 leading-tight">
-            Find Your<br />
-            <span className="text-cd-purple-light">Remote Talent</span>
-          </h1>
-
-          <p className="text-white/60 text-lg max-w-lg mb-4 font-medium">
-            ClearDesk matches US businesses with pre-vetted, Philippines-based remote professionals — VAs, schedulers, bookkeepers, and more.
-          </p>
-
-          <p className="text-cd-blue/80 text-sm max-w-md mb-10 font-medium bg-cd-blue/10 border border-cd-blue/20 rounded-xl px-5 py-3">
-            This is a <strong className="text-cd-blue">hiring challenge</strong>. The app below has intentional bugs — find them, describe the fix, and prove your skills.
-          </p>
-
-          <button
-            onClick={() => setStage('register')}
-            className="px-10 py-4 rounded-2xl text-white font-bold text-lg shadow-2xl transition-all hover:scale-105 active:scale-95"
-            style={{ background: 'linear-gradient(135deg, #835AFF, #6040dd)' }}
-          >
-            Find Your Talent →
-          </button>
-
-          <p className="text-white/30 text-xs mt-5">15 bugs · {TOTAL_POINTS} points · AI-scored</p>
-        </div>
-
-        <div className="px-8 pb-10 grid grid-cols-3 gap-4 max-w-3xl mx-auto w-full">
-          {[
-            { title: 'Pre-vetted talent', desc: 'Every candidate is skills-tested before placement' },
-            { title: 'US business hours', desc: 'Team members work your timezone, your schedule' },
-            { title: 'Managed & supported', desc: 'We handle HR, payroll, and ongoing management' },
-          ].map((f) => (
-            <div key={f.title} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
-              <div className="font-bold text-white text-sm mb-1">{f.title}</div>
-              <div className="text-white/40 text-xs">{f.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
   // Registration
   if (stage === 'register') {
     return (
       <div className="min-h-screen flex items-center justify-center px-4" style={{ background: 'linear-gradient(135deg, #092B48 0%, #0d3a60 50%, #092B48 100%)' }}>
         <div className="w-full max-w-md">
-          <button
-            onClick={() => setStage('landing')}
-            className="text-white/40 text-sm mb-6 hover:text-white/60 transition-colors flex items-center gap-1"
-          >
-            ← Back
-          </button>
-
           <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
