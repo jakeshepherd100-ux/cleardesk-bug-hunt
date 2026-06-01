@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
-import { BUGS, TOTAL_POINTS } from '@/lib/bugs'
+import { BUGS, TOTAL_POINTS, PASS_SCORE, PASS_MIN_BUGS, hasPassed } from '@/lib/bugs'
 
 async function getAdminData() {
   const cookieStore = cookies()
@@ -29,6 +29,7 @@ export default async function AdminDashboard() {
     candidates.length > 0
       ? Math.round(candidates.reduce((sum, c) => sum + c.totalScore, 0) / candidates.length)
       : 0
+  const passCount = candidates.filter((c) => hasPassed(c.totalScore, c.submissions.length)).length
 
   const bugSubmissionCounts = BUGS.map((bug) => ({
     bug,
@@ -64,16 +65,27 @@ export default async function AdminDashboard() {
           </form>
         </div>
 
+        {/* Pass threshold notice */}
+        <div className="mb-6 bg-cd-purple/10 border border-cd-purple/20 rounded-xl px-5 py-3 flex items-center gap-4 text-sm">
+          <span className="text-cd-purple-light font-semibold">Pass threshold:</span>
+          <span className="text-white/70">Score ≥ {PASS_SCORE} pts out of {TOTAL_POINTS}</span>
+          <span className="text-white/30">·</span>
+          <span className="text-white/70">At least {PASS_MIN_BUGS} bugs found</span>
+          <span className="text-white/30">·</span>
+          <span className="text-white/70">{BUGS.length} bugs total (2 easy · 3 medium · 3 hard)</span>
+        </div>
+
         {/* Summary stats */}
-        <div className="grid grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-5 gap-4 mb-8">
           {[
             { label: 'Candidates', value: candidates.length },
+            { label: 'Passed', value: passCount, highlight: true },
             { label: 'Submissions', value: totalSubmissions },
             { label: 'Avg Score', value: `${avgScore}/${TOTAL_POINTS}` },
             { label: 'Max Possible', value: TOTAL_POINTS },
           ].map((stat) => (
-            <div key={stat.label} className="bg-challenge-surface border border-challenge-border rounded-xl p-4">
-              <div className="text-2xl font-black text-white mb-1">{stat.value}</div>
+            <div key={stat.label} className={`bg-challenge-surface border rounded-xl p-4 ${stat.highlight ? 'border-green-500/40' : 'border-challenge-border'}`}>
+              <div className={`text-2xl font-black mb-1 ${stat.highlight ? 'text-green-400' : 'text-white'}`}>{stat.value}</div>
               <div className="text-xs text-gray-500 font-mono uppercase tracking-widest">{stat.label}</div>
             </div>
           ))}
@@ -89,21 +101,28 @@ export default async function AdminDashboard() {
               {candidates.length === 0 ? (
                 <div className="p-6 text-center text-gray-600 text-sm">No candidates yet</div>
               ) : (
-                candidates.map((c, idx) => (
-                  <div key={c.id} className="px-5 py-3 flex items-center justify-between">
+                candidates.map((c, idx) => {
+                  const passed = hasPassed(c.totalScore, c.submissions.length)
+                  return (
+                  <div key={c.id} className={`px-5 py-3 flex items-center justify-between ${passed ? 'bg-green-900/10' : ''}`}>
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-xs text-gray-600 w-4">{idx + 1}</span>
                       <div>
-                        <div className="text-sm font-medium text-white">{c.name}</div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-white">{c.name}</span>
+                          {passed && (
+                            <span className="text-xs font-bold text-green-400 bg-green-900/30 border border-green-500/30 px-1.5 py-0.5 rounded">PASS</span>
+                          )}
+                        </div>
                         <div className="text-xs text-gray-500 font-mono">{c.email}</div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-bold text-cd-purple-light">{c.totalScore}pts</div>
-                      <div className="text-xs text-gray-500">{c.submissions.length} submitted</div>
+                      <div className={`font-bold ${passed ? 'text-green-400' : 'text-cd-purple-light'}`}>{c.totalScore}pts</div>
+                      <div className="text-xs text-gray-500">{c.submissions.length} bugs found</div>
                     </div>
                   </div>
-                ))
+                )})
               )}
             </div>
           </div>
